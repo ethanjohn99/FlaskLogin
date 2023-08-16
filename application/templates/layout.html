@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <h1>Movies and review app</h1>
+
+        <a href= '{{url_for("user")}}' >Home</a>
+        <a href= '{{url_for("add")}}' >Add</a>
+        <br><br>
+        {% block body_content %}
+        {% endblock body_content %}
+    </body>
+</html>
