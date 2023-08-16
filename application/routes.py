@@ -65,15 +65,13 @@ class Routes():
             AccountDetails = Accounts.query.filter_by(username=form_username).first()
             form_password = str(form_password)
 
-            db_password = AccountDetails.password
-            #valid_password = bcrypt.check_password_hash(db_password, form_password)
-            valid_password = password_checker(hashed_password = db_password, raw_password = form_password)
-
             if Accounts.query.filter_by(username=form_username).count() != 1:
                 msg = 'Incorrect username / password !'
                 return render_template('login.html', msg = msg)
             
             elif AccountDetails.username == form_username and valid_password is True:
+                db_password = AccountDetails.password
+                valid_password = password_checker(hashed_password = db_password, raw_password = form_password)
                 session['loggedin'] = True
                 msg = 'Logged in successfully !'
                 return render_template('index.html', msg = msg)
